@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Administradores (Você e o Secretário de Esportes)
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  password String
+  role     String   @default("ADMIN") 
+}
+
+// Equipes do Campeonato
+model Team {
+  id          Int       @id @default(autoincrement())
+  name        String
+  badgeUrl    String?   // Link para a imagem do escudo
+  history     String?   @db.Text
+  titles      String?   @db.Text
+  group       String?   // Ex: "Grupo A", "Grupo B"
+  points      Int       @default(0) 
+  
+  // Relações
+  players     Player[]
+  homeMatches Match[]   @relation("HomeTeam")
+  awayMatches Match[]   @relation("AwayTeam")
+}
+
+// Atletas
+model Player {
+  id          Int     @id @default(autoincrement())
+  name        String
+  goals       Int     @default(0)
+  assists     Int     @default(0)
+  yellowCards Int     @default(0)
+  redCards    Int     @default(0)
+  notes       String? @db.Text 
+  
+  teamId      Int
+  team        Team    @relation(fields: [teamId], references: [id])
+}
+
+// Partidas/Confrontos
+model Match {
+  id          Int      @id @default(autoincrement())
+  date        DateTime 
+  location    String   
+  referee     String?  
+  homeScore   Int?     
+  awayScore   Int?     
+  status      String   @default("AGENDADA") // AGENDADA, EM_ANDAMENTO, FINALIZADA
+  
+  // Relações
+  homeTeamId  Int
+  homeTeam    Team     @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeamId  Int
+  awayTeam    Team     @relation("AwayTeam", fields: [awayTeamId], references: [id])
+}
