@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import HeaderInstitucional from '../components/HeaderInstitucional/HeaderInstitucional';
 import '../App.css';
 
 // Tipagem para o TypeScript saber o que vem do banco
@@ -28,23 +29,26 @@ export default function Team() {
   }
 
   return (
-    <div className="app-container">
-      <Link to="/" style={{ color: 'var(--azul-principal)', textDecoration: 'none', fontWeight: 'bold' }}>
-        ← Voltar para os jogos
-      </Link>
-      
-      <div style={{ marginTop: '20px', padding: '20px', backgroundColor: '#fff', borderRadius: '8px' }}>
-        {/* Agora o team.name é injetado diretamente do banco de dados! */}
-        <h1 className="title">Página da Equipe: {team.name}</h1>
-        
-        <div style={{ marginTop: '15px' }}>
-          <p><strong>Grupo:</strong> {team.group}</p>
-          <p><strong>História:</strong> {team.history || 'História ainda não cadastrada.'}</p>
-        </div>
+    <div>
+      <HeaderInstitucional />
+      <div className="app-container">
+        <Link to="/" style={{ color: 'var(--azul-principal)', textDecoration: 'none', fontWeight: 'bold' }}>
+          ← Voltar para os jogos
+        </Link>
 
-        <p style={{ marginTop: '20px', color: '#666' }}>
-          (Aqui embaixo vai entrar a tabela de jogadores com cartões e gols em breve!)
-        </p>
+        <div style={{ marginTop: '20px', padding: '20px', backgroundColor: '#fff', borderRadius: '8px' }}>
+          {/* Agora o team.name é injetado diretamente do banco de dados! */}
+          <h1 className="title">Página da Equipe: {team.name}</h1>
+
+          <div style={{ marginTop: '15px' }}>
+            <p><strong>Grupo:</strong> {team.group}</p>
+            <p><strong>História:</strong> {team.history || 'História ainda não cadastrada.'}</p>
+          </div>
+
+          <p style={{ marginTop: '20px', color: '#666' }}>
+            (Aqui embaixo vai entrar a tabela de jogadores com cartões e gols em breve!)
+          </p>
+        </div>
       </div>
     </div>
   );

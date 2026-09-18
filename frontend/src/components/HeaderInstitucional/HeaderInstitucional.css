@@ -1,0 +1,93 @@
+.topo-institucional {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.conteudo-limitado {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Barra Superior */
+.barra-superior {
+  background-color: #0b3c5d;
+  color: #ffffff;
+  font-size: 0.8rem;
+  padding: 6px 0;
+}
+
+.links-uteis {
+  display: flex;
+  gap: 15px;
+}
+
+.links-uteis a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.links-uteis a:hover {
+  text-decoration: underline;
+}
+
+/* Linha colorida */
+.linha-colorida {
+  height: 4px;
+  background: linear-gradient(90deg, #4caf50, #ff9800, #03a9f4, #ffeb3b);
+}
+
+/* Faixa Principal com Logo proporcional */
+.faixa-principal {
+  padding: 12px 0;
+  background-color: #ffffff;
+}
+
+.logo-prefeitura img {
+  max-height: 95px; /* Controla perfeitamente a altura da logo */
+  width: auto;
+  display: block;
+}
+
+.selos-prefeitura {
+  display: flex;
+  gap: 10px;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.selo {
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Barra de Navegação */
+.barra-navegacao {
+  background-color: #005b8e;
+  padding: 10px 0;
+}
+
+.nav-links {
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+  color: #fff100;
+}

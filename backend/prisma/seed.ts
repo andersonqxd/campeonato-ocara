@@ -46,20 +46,21 @@ async function main() {
   const getTeamId = (name: string) => createdTeams.find(t => t.name === name)?.id;
 
   // 2. AGENDANDO A 1ª RODADA (DATA BASE: 20 DE SETEMBRO)[cite: 1]
+// 2. AGENDANDO A 1ª RODADA COM LOCAL DINÂMICO BASEADO NO MANDANTE
   const matchesData = [
-    // 1ª Rodada - Grupo A[cite: 1]
+    // 1ª Rodada - Grupo A
     { homeTeam: 'Vila São Marcos', awayTeam: 'Seís Carnaúbas', date: '2026-09-20T16:00:00Z' },
     { homeTeam: 'Cearazinho', awayTeam: 'Lenni', date: '2026-09-20T16:00:00Z' },
     
-    // 1ª Rodada - Grupo B[cite: 1]
+    // 1ª Rodada - Grupo B
     { homeTeam: 'Trinta e Sete', awayTeam: 'Lagoinha', date: '2026-09-20T16:00:00Z' },
     { homeTeam: 'Lagoa do Velho', awayTeam: 'Ocara', date: '2026-09-20T16:00:00Z' },
     
-    // 1ª Rodada - Grupo C[cite: 1]
+    // 1ª Rodada - Grupo C
     { homeTeam: 'Azulão', awayTeam: 'Jurema', date: '2026-09-20T16:00:00Z' },
     { homeTeam: 'Serragem', awayTeam: 'União Foveira', date: '2026-09-20T16:00:00Z' },
     
-    // 1ª Rodada - Grupo D[cite: 1]
+    // 1ª Rodada - Grupo D
     { homeTeam: 'Novo Horizonte', awayTeam: 'Renascer', date: '2026-09-20T16:00:00Z' },
     { homeTeam: 'Juventude', awayTeam: 'Mangueira', date: '2026-09-20T16:00:00Z' },
   ];
@@ -73,7 +74,8 @@ async function main() {
       await prisma.match.create({
         data: {
           date: new Date(match.date),
-          location: 'Estádio Municipal', 
+          // O local agora segue dinamicamente o nome do time mandante!
+          location: `Estádio / Campo do ${match.homeTeam}`,
           homeTeamId,
           awayTeamId,
           status: 'AGENDADA'
